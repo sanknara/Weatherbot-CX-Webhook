@@ -1,11 +1,11 @@
 import json
 import os
 import requests
+import datetime
 
 from flask import Flask
 from flask import request
 from flask import make_response
-from datetime import date
 
 # Flask app should start in global layout
 app = Flask(__name__)
@@ -31,8 +31,8 @@ def makeResponse(req):
     print(city)
     dateReq = parameters.get("date")
     print(dateReq)
-    date = date(dateReq.year,dateReq.month,dateReq.day);
-    print(date)
+    dateReq = datetime.date(int(dateReq.year),int(dateReq.month),int(dateReq.day));
+    print(dateReq)
     print("debug log")
     if city is None:
         return None
@@ -41,7 +41,7 @@ def makeResponse(req):
     weather=json_object['list']
     condition= "?"
     for i in range(len(weather)):
-        if date in weather[i]['dt_txt']:
+        if dateReq in weather[i]['dt_txt']:
             condition= weather[i]['weather'][0]['description']
             print(condition)
             break
