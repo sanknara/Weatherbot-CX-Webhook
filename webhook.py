@@ -31,7 +31,7 @@ def makeResponse(req):
     print(city)
     dateReq = parameters.get("date")
     print(dateReq)
-    dateReq = datetime.date(int(dateReq.year),int(dateReq.month),int(dateReq.day));
+    dateReq = datetime.date(int(dateReq.get("year")),int(dateReq.get("month")),int(dateReq.get("day")));
     print(dateReq)
     print("debug log")
     if city is None:
