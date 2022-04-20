@@ -50,8 +50,23 @@ def makeResponse(req):
     speech = "The forecast for "+city+ " for "+date+" is "+condition
     print(speech)
     return {
-    "text": speech
-    }
+  "fulfillmentResponse": {
+    "messages": [
+      {
+        "text": {
+          "text": [
+            speech
+          ],
+          "redactedText": [
+            "Apologises! Currently the server is down, Unable to fetch the weather forecast details."
+          ]
+        },
+        "responseType": "HANDLER_PROMPT",
+        "source": "VIRTUAL_AGENT"
+      }
+    ]
+  }
+}
     
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
